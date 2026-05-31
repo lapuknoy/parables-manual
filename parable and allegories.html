@@ -1,0 +1,2626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Parables and Allegories of Jesus – Manual</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg-light: #f7f7f9;
+      --bg-dark: #111217;
+      --fg-light: #111217;
+      --fg-dark: #f7f7f9;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59,130,246,0.15);
+      --card-light: #ffffff;
+      --card-dark: #1b1c23;
+      --border-light: #e2e2ea;
+      --border-dark: #2b2c36;
+      --muted-light: #6b7280;
+      --muted-dark: #9ca3af;
+      --radius: 10px;
+      --transition-fast: 0.18s ease-out;
+      --shadow-light: 0 10px 25px rgba(15,23,42,0.08);
+      --shadow-dark: 0 10px 30px rgba(0,0,0,0.6);
+      --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-heading: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background: var(--bg-light);
+      color: var(--fg-light);
+      -webkit-font-smoothing: antialiased;
+      transition: background var(--transition-fast), color var(--transition-fast);
+    }
+
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--fg-dark);
+    }
+
+    .app-shell {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1rem 2.5rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 0.9rem 0 0.7rem;
+      background: linear-gradient(to bottom,
+        rgba(247,247,249,0.96),
+        rgba(247,247,249,0.9),
+        rgba(247,247,249,0.0)
+      );
+      backdrop-filter: blur(14px);
+    }
+    body.dark header {
+      background: linear-gradient(to bottom,
+        rgba(17,18,23,0.96),
+        rgba(17,18,23,0.9),
+        rgba(17,18,23,0.0)
+      );
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .title-block h1 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .title-block p {
+      margin: 0;
+      font-size: 0.78rem;
+      color: var(--muted-light);
+    }
+    body.dark .title-block p {
+      color: var(--muted-dark);
+    }
+
+    .mode-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-light);
+      background: rgba(255,255,255,0.7);
+      cursor: pointer;
+      font-size: 0.78rem;
+      color: var(--muted-light);
+      transition: background var(--transition-fast), border var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    }
+    body.dark .mode-toggle {
+      border-color: var(--border-dark);
+      background: rgba(15,23,42,0.7);
+      color: var(--muted-dark);
+    }
+    .mode-toggle:hover {
+      transform: translateY(-1px);
+    }
+
+    .mode-toggle-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+
+    main {
+      margin-top: 0.5rem;
+    }
+
+    .intro-card {
+      margin-top: 0.5rem;
+      padding: 0.9rem 0.9rem 0.85rem;
+      border-radius: var(--radius);
+      background: var(--card-light);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-light);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    body.dark .intro-card {
+      background: var(--card-dark);
+      border-color: var(--border-dark);
+      box-shadow: var(--shadow-dark);
+    }
+
+    .intro-card h2 {
+      margin: 0 0 0.35rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted-light);
+    }
+    body.dark .intro-card h2 {
+      color: var(--muted-dark);
+    }
+
+    .intro-card p {
+      margin: 0.2rem 0;
+    }
+
+    .chapters {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .chapter {
+      border-radius: var(--radius);
+      background: var(--card-light);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-light);
+      overflow: hidden;
+      transition: background var(--transition-fast), border var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+    }
+    body.dark .chapter {
+      background: var(--card-dark);
+      border-color: var(--border-dark);
+      box-shadow: var(--shadow-dark);
+    }
+
+    .chapter-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0.9rem;
+      cursor: pointer;
+    }
+
+    .chapter-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .chapter-title {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .chapter-subtitle {
+      margin: 0;
+      font-size: 0.78rem;
+      color: var(--muted-light);
+    }
+    body.dark .chapter-subtitle {
+      color: var(--muted-dark);
+    }
+
+    .chevron {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--muted-light);
+      transition: transform var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+    }
+    body.dark .chevron {
+      color: var(--muted-dark);
+    }
+
+    .chapter.open .chevron {
+      transform: rotate(90deg);
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .chapter-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease-out;
+      border-top: 1px solid transparent;
+    }
+
+    .chapter.open .chapter-content {
+      border-top-color: var(--border-light);
+    }
+    body.dark .chapter.open .chapter-content {
+      border-top-color: var(--border-dark);
+    }
+
+    .chapter-inner {
+      padding: 0.5rem 0.9rem 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .chapter-meta {
+      font-size: 0.78rem;
+      color: var(--muted-light);
+      margin-bottom: 0.2rem;
+    }
+    body.dark .chapter-meta {
+      color: var(--muted-dark);
+    }
+
+    .chapter-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .chapter-nav button {
+      padding: 0.35rem 0.65rem;
+      font-size: 0.78rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-light);
+      background: var(--card-light);
+      color: var(--fg-light);
+      cursor: pointer;
+      transition: background 0.18s ease, border 0.18s ease, color 0.18s ease;
+    }
+
+    body.dark .chapter-nav button {
+      border-color: var(--border-dark);
+      background: var(--card-dark);
+      color: var(--fg-dark);
+    }
+
+    .chapter-nav button:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .entry {
+      border-radius: 8px;
+      border: 1px solid transparent;
+      padding: 0.55rem 0.6rem;
+      background: transparent;
+      transition: background var(--transition-fast), border var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .entry-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      gap: 0.5rem;
+    }
+
+    .entry-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .entry-title {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .entry-ref {
+      margin: 0;
+      font-size: 0.78rem;
+      color: var(--muted-light);
+    }
+    body.dark .entry-ref {
+      color: var(--muted-dark);
+    }
+
+    .entry-chevron {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: var(--muted-light);
+      transition: transform var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+    }
+    body.dark .entry-chevron {
+      color: var(--muted-dark);
+    }
+
+    .entry.open {
+      background: rgba(59,130,246,0.03);
+      border-color: var(--accent-soft);
+      transform: translateY(-1px);
+    }
+    body.dark .entry.open {
+      background: rgba(59,130,246,0.08);
+    }
+
+    .entry.open .entry-chevron {
+      transform: rotate(90deg);
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .entry-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease-out;
+      padding-top: 0;
+    }
+
+    .entry.open .entry-body {
+      padding-top: 0.45rem;
+    }
+
+    .entry-section {
+      margin-bottom: 0.4rem;
+    }
+
+    .entry-section h4 {
+      margin: 0 0 0.15rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted-light);
+    }
+    body.dark .entry-section h4 {
+      color: var(--muted-dark);
+    }
+
+    .entry-section p {
+      margin: 0.1rem 0;
+      font-size: 0.83rem;
+      line-height: 1.5;
+    }
+
+    .entry-section ul {
+      margin: 0.1rem 0 0.2rem 1.1rem;
+      padding: 0;
+      font-size: 0.83rem;
+      line-height: 1.5;
+    }
+
+    .entry-section li {
+      margin: 0.08rem 0;
+    }
+
+    .teaching-outline ol {
+      margin: 0.1rem 0 0.2rem 1.1rem;
+      padding: 0;
+      font-size: 0.83rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 600px) {
+      .chapter-header {
+        padding: 0.7rem 0.75rem;
+      }
+      .chapter-inner {
+        padding: 0.45rem 0.75rem 0.7rem;
+      }
+      .entry {
+        padding: 0.5rem 0.55rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <div class="header-inner">
+        <div class="title-block">
+          <h1>The Parables and Allegories of Jesus</h1>
+          <p>A theological and teaching manual for study, preaching, and discipleship</p>
+        </div>
+        <button class="mode-toggle" id="modeToggle" type="button">
+          <span class="mode-toggle-icon" id="modeIcon">🌙</span>
+          <span id="modeLabel">Dark</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro-card">
+        <h2>Preface</h2>
+        <p>This manual was prepared to serve the church in the careful reading, teaching, and proclamation of the parables and allegories of Jesus. These texts are among the most familiar portions of the Gospels, yet they are often misunderstood—either reduced to simple moral lessons or handled without sufficient attention to their theological depth, literary setting, and Kingdom significance.</p>
+        <p>The aim is to provide a framework that is both faithful to Scripture and useful for ministry, moving from text to understanding and from understanding to teaching.</p>
+      </section>
+
+      <section class="chapters">
+
+        <!-- CHAPTER 1 -->
+        <article class="chapter" data-chapter>
+          <div class="chapter-header">
+            <div class="chapter-title-block">
+              <h3 class="chapter-title">Chapter 1 — Kingdom Parables</h3>
+              <p class="chapter-subtitle">Nature, growth, value, and final separation of the Kingdom</p>
+            </div>
+            <div class="chevron">›</div>
+          </div>
+          <div class="chapter-content">
+            <div class="chapter-inner">
+              <p class="chapter-meta">
+                Parables: Sower; Wheat and Weeds; Mustard Seed; Leaven; Hidden Treasure; Pearl of Great Price; Net.
+              </p>
+
+              <div class="chapter-nav">
+                <button data-jump="#sower">Sower</button>
+                <button data-jump="#wheat-weeds">Wheat &amp; Weeds</button>
+                <button data-jump="#mustard">Mustard</button>
+                <button data-jump="#leaven">Leaven</button>
+                <button data-jump="#treasure">Treasure</button>
+                <button data-jump="#pearl">Pearl</button>
+                <button data-jump="#net">Net</button>
+              </div>
+
+              <!-- SOWER -->
+              <div class="entry" id="sower" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Parable of the Sower</h4>
+                    <p class="entry-ref">Matthew 13:1–23; Mark 4:1–20; Luke 8:4–15</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Spoken to a large crowd from a boat; explained privately to the disciples.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A farmer scatters seed on four soils: path, rocky, thorny, good.</li>
+                      <li>Same seed; differing conditions determine growth.</li>
+                      <li>The story moves from hearing → receiving → bearing fruit.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>The Kingdom comes through the word, not spectacle.</li>
+                      <li>Hearing is spiritual, not merely auditory.</li>
+                      <li>Fruitfulness is the evidence of genuine reception.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>Not fixed “types of people,” but responses to the word.</li>
+                      <li>The sower is not the focus; the heart’s condition is.</li>
+                      <li>Fruit is not instant; growth is gradual and often hidden.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Examine the heart’s openness to God’s word.</li>
+                      <li>Ministry requires faithful sowing, not controlling outcomes.</li>
+                      <li>Expect mixed responses without discouragement.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The word is sown generously.</li>
+                      <li>The heart determines the harvest.</li>
+                      <li>True hearing produces lasting fruit.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- WHEAT AND WEEDS -->
+              <div class="entry" id="wheat-weeds" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Parable of the Wheat and the Weeds</h4>
+                    <p class="entry-ref">Matthew 13:24–30, 36–43</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>To the crowd; interpretation given to the disciples.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>Wheat and weeds grow together after an enemy’s sabotage.</li>
+                      <li>Servants want to uproot the weeds; the master forbids it.</li>
+                      <li>Final separation happens only at harvest.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Good and evil coexist until the end.</li>
+                      <li>God’s patience is not weakness but purpose.</li>
+                      <li>Judgment is certain and belongs to God alone.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>Not a mandate for purging the church prematurely.</li>
+                      <li>The field = the world, not the congregation.</li>
+                      <li>The parable warns against overzealous sorting.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Live faithfully in a mixed world.</li>
+                      <li>Trust God’s timing for justice.</li>
+                      <li>Resist harsh, premature judgments.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The enemy sows confusion.</li>
+                      <li>The Master restrains premature judgment.</li>
+                      <li>God will separate rightly at the end.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- MUSTARD SEED -->
+              <div class="entry" id="mustard" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Parable of the Mustard Seed</h4>
+                    <p class="entry-ref">Matthew 13:31–32; Mark 4:30–32; Luke 13:18–19</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Among a cluster of Kingdom parables.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A tiny seed becomes a large garden plant.</li>
+                      <li>The contrast is between beginning and outcome.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>The Kingdom’s growth is disproportionate to its start.</li>
+                      <li>God works through small, unimpressive beginnings.</li>
+                      <li>The final form exceeds expectation.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>Not about institutional size but Kingdom impact.</li>
+                      <li>Birds symbolize inclusion, not corruption.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Don’t despise small beginnings.</li>
+                      <li>Trust God’s long-term work.</li>
+                      <li>Faithfulness now shapes future fruit.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The Kingdom begins small.</li>
+                      <li>The Kingdom grows beyond sight.</li>
+                      <li>The Kingdom becomes shelter for many.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- LEAVEN -->
+              <div class="entry" id="leaven" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Parable of the Leaven</h4>
+                    <p class="entry-ref">Matthew 13:33; Luke 13:20–21</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Paired with the mustard seed.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A small amount of leaven permeates a large batch of dough.</li>
+                      <li>The action is hidden but transformative.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>The Kingdom works quietly and pervasively.</li>
+                      <li>Transformation begins unseen.</li>
+                      <li>God’s work spreads beyond human control.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>Leaven is negative elsewhere, but here the focus is effect, not morality.</li>
+                      <li>The parable emphasizes hidden influence, not secrecy.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Trust God’s unseen work.</li>
+                      <li>Influence begins small but spreads.</li>
+                      <li>Don’t measure Kingdom impact by visibility.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The Kingdom begins unnoticed.</li>
+                      <li>The Kingdom works from within.</li>
+                      <li>The Kingdom transforms everything it touches.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- HIDDEN TREASURE -->
+              <div class="entry" id="treasure" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Parable of the Hidden Treasure</h4>
+                    <p class="entry-ref">Matthew 13:44</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Private teaching to disciples.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A man finds treasure in a field, hides it, sells all, buys the field.</li>
+                      <li>The movement is discovery → joy → decisive action.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>The Kingdom’s value surpasses all else.</li>
+                      <li>Joy motivates sacrifice.</li>
+                      <li>True discipleship is reorientation, not addition.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>Not “buying salvation,” but recognizing worth.</li>
+                      <li>The hiding is not deceit but urgency.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Evaluate what you treasure.</li>
+                      <li>Joy fuels obedience.</li>
+                      <li>The Kingdom demands priority.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The Kingdom is discovered.</li>
+                      <li>The Kingdom is valued.</li>
+                      <li>The Kingdom is pursued above all.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PEARL -->
+              <div class="entry" id="pearl" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Parable of the Pearl of Great Price</h4>
+                    <p class="entry-ref">Matthew 13:45–46</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Companion to the treasure parable.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A merchant finds one pearl of surpassing value.</li>
+                      <li>He sells all to obtain it.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>The Kingdom is worth everything.</li>
+                      <li>True seekers recognize value when they see it.</li>
+                      <li>Discipleship is decisive.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>Not about “searching for God,” but recognizing Christ’s worth.</li>
+                      <li>The merchant is not a symbol of merit.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>What competes with the Kingdom’s value?</li>
+                      <li>Discipleship requires clarity of desire.</li>
+                      <li>Christ is the treasure.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The search.</li>
+                      <li>The discovery.</li>
+                      <li>The decisive exchange.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- NET -->
+              <div class="entry" id="net" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Parable of the Net</h4>
+                    <p class="entry-ref">Matthew 13:47–50</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Final parable in the Kingdom cluster.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A dragnet gathers all kinds of fish.</li>
+                      <li>Sorting happens at the end.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>The Kingdom gathers widely.</li>
+                      <li>Final judgment separates truly.</li>
+                      <li>God’s justice is thorough.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>Parallel to wheat and weeds.</li>
+                      <li>Not about evangelistic methods but final sorting.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Live with judgment in view.</li>
+                      <li>Don’t assume inclusion without transformation.</li>
+                      <li>Trust God’s final evaluation.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The wide gathering.</li>
+                      <li>The final sorting.</li>
+                      <li>The certainty of judgment.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </article>
+
+        <!-- CHAPTER 2 -->
+        <article class="chapter" data-chapter>
+          <div class="chapter-header">
+            <div class="chapter-title-block">
+              <h3 class="chapter-title">Chapter 2 — Mercy and the Lost</h3>
+              <p class="chapter-subtitle">God’s pursuit, joy over repentance, and the scandal of grace</p>
+            </div>
+            <div class="chevron">›</div>
+          </div>
+          <div class="chapter-content">
+            <div class="chapter-inner">
+              <p class="chapter-meta">
+                Parables: Lost Sheep; Lost Coin; Prodigal Son; Two Debtors.
+              </p>
+
+              <div class="chapter-nav">
+                <button data-jump="#lost-sheep">Lost Sheep</button>
+                <button data-jump="#lost-coin">Lost Coin</button>
+                <button data-jump="#prodigal">Prodigal Son</button>
+                <button data-jump="#two-debtors">Two Debtors</button>
+              </div>
+
+              <!-- LOST SHEEP -->
+              <div class="entry" id="lost-sheep" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Lost Sheep</h4>
+                    <p class="entry-ref">Luke 15:1–7</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Spoken in response to Pharisees complaining that Jesus receives sinners.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A shepherd leaves ninety-nine sheep to search for one that wandered.</li>
+                      <li>He finds it, carries it home, and calls others to rejoice.</li>
+                      <li>Movement: loss → search → recovery → joy.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>God initiates the search for the lost.</li>
+                      <li>Repentance brings heavenly joy.</li>
+                      <li>The value of one soul is immeasurable.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>The ninety-nine are not “abandoned”; the focus is the urgency of the lost.</li>
+                      <li>The parable confronts religious hardness, not pastoral recklessness.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Evangelism mirrors God’s pursuit, not human strategy.</li>
+                      <li>Rejoice when others repent; align with heaven’s priorities.</li>
+                      <li>No one is too insignificant for God’s attention.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The lost matter to God.</li>
+                      <li>God seeks until He finds.</li>
+                      <li>Heaven rejoices over repentance.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- LOST COIN -->
+              <div class="entry" id="lost-coin" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Lost Coin</h4>
+                    <p class="entry-ref">Luke 15:8–10</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Second parable in the “lost” trilogy.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A woman loses a coin, lights a lamp, sweeps, searches carefully.</li>
+                      <li>She finds it and calls neighbors to rejoice.</li>
+                      <li>Movement: loss → diligent search → recovery → joy.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>God’s search is intentional and thorough.</li>
+                      <li>Repentance is a cause for communal celebration.</li>
+                      <li>The lost have intrinsic worth.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>The coin cannot seek itself; the emphasis is on God’s initiative.</li>
+                      <li>The parable pairs with the sheep to show different kinds of lostness.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>The church must reflect God’s diligence in seeking the lost.</li>
+                      <li>Celebrate repentance, not critique it.</li>
+                      <li>See people as God sees them—valuable.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The value of the lost.</li>
+                      <li>The diligence of God’s search.</li>
+                      <li>The joy of restoration.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PRODIGAL SON -->
+              <div class="entry" id="prodigal" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Prodigal Son</h4>
+                    <p class="entry-ref">Luke 15:11–32</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Climactic parable addressing Pharisees’ hardness.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>Younger son demands inheritance, wastes it, returns in repentance.</li>
+                      <li>Father runs, embraces, restores him.</li>
+                      <li>Older son resents grace and refuses to join the celebration.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>God’s lavish grace toward repentant sinners.</li>
+                      <li>The danger of self-righteousness.</li>
+                      <li>True sonship is restored by mercy, not merit.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>Two lost sons: one in rebellion, one in resentment.</li>
+                      <li>The father’s actions reveal God’s heart, not human custom.</li>
+                      <li>The story ends unresolved—inviting the listener to respond.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>For the rebellious: repentance opens the door to restoration.</li>
+                      <li>For the religious: beware bitterness at God’s mercy to others.</li>
+                      <li>For the church: reflect the Father’s posture.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The rebellion that runs.</li>
+                      <li>The grace that restores.</li>
+                      <li>The resentment that refuses.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TWO DEBTORS -->
+              <div class="entry" id="two-debtors" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Two Debtors</h4>
+                    <p class="entry-ref">Luke 7:36–50</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Jesus at a Pharisee’s house; a sinful woman anoints His feet.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>Two debtors owe different amounts; both are forgiven.</li>
+                      <li>The one forgiven more loves more.</li>
+                      <li>Jesus applies the parable to the woman and the Pharisee.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Awareness of forgiveness fuels love for Christ.</li>
+                      <li>Self-righteousness blinds one to personal need.</li>
+                      <li>Grace produces devotion.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>The parable does not teach degrees of salvation, but degrees of awareness.</li>
+                      <li>The Pharisee’s failure is not morality but blindness.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Deep love grows from deep awareness of mercy.</li>
+                      <li>Religious pride suffocates gratitude.</li>
+                      <li>Christ honors repentant devotion over respectable distance.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The debt we forget.</li>
+                      <li>The grace we receive.</li>
+                      <li>The love that follows.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </article>
+
+        <!-- CHAPTER 3 -->
+        <article class="chapter" data-chapter>
+          <div class="chapter-header">
+            <div class="chapter-title-block">
+              <h3 class="chapter-title">Chapter 3 — Prayer and Posture</h3>
+              <p class="chapter-subtitle">Persistence, humility, dependence, and true righteousness</p>
+            </div>
+            <div class="chevron">›</div>
+          </div>
+          <div class="chapter-content">
+            <div class="chapter-inner">
+              <p class="chapter-meta">
+                Parables: Friend at Midnight; Persistent Widow; Pharisee and Tax Collector.
+              </p>
+
+              <div class="chapter-nav">
+                <button data-jump="#friend-midnight">Friend at Midnight</button>
+                <button data-jump="#persistent-widow">Persistent Widow</button>
+                <button data-jump="#pharisee-tax">Pharisee &amp; Tax Collector</button>
+              </div>
+
+              <!-- FRIEND AT MIDNIGHT -->
+              <div class="entry" id="friend-midnight" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Friend at Midnight</h4>
+                    <p class="entry-ref">Luke 11:5–8</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Immediately after Jesus teaches the Lord’s Prayer.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A man receives unexpected guests at midnight.</li>
+                      <li>He goes to a friend for bread; the friend resists due to inconvenience.</li>
+                      <li>Persistence wins the response.</li>
+                      <li>Movement: need → request → resistance → persistence → response.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Shameless persistence in prayer.</li>
+                      <li>God is not reluctant; the parable argues from lesser to greater.</li>
+                      <li>Prayer is relational, bold, and expectant.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>The friend is not a picture of God; he is a contrast.</li>
+                      <li>The point is not annoyance but persistence.</li>
+                      <li>The cultural context: hospitality was a sacred duty.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Pray with boldness, not politeness that quits early.</li>
+                      <li>Persistence is not manipulation; it is faith refusing to let go.</li>
+                      <li>God responds generously to His children.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The need that drives prayer.</li>
+                      <li>The persistence that refuses to quit.</li>
+                      <li>The God who answers far better than reluctant friends.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PERSISTENT WIDOW -->
+              <div class="entry" id="persistent-widow" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Persistent Widow</h4>
+                    <p class="entry-ref">Luke 18:1–8</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Jesus teaches about praying without losing heart.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A widow repeatedly appeals to an unjust judge.</li>
+                      <li>He refuses, then relents because of her persistence.</li>
+                      <li>Movement: injustice → appeal → delay → persistence → vindication.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Persistence in prayer in the face of delay.</li>
+                      <li>God’s justice contrasted with the judge’s indifference.</li>
+                      <li>Faith is revealed in continued prayer.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>The judge is not like God; he is the opposite.</li>
+                      <li>The parable addresses delay, not reluctance.</li>
+                      <li>“Will He find faith?” points to endurance, not quantity.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Don’t interpret delay as denial.</li>
+                      <li>Keep praying for justice, righteousness, and vindication.</li>
+                      <li>Faith holds on when circumstances say otherwise.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The cry for justice.</li>
+                      <li>The persistence of faith.</li>
+                      <li>The certainty of God’s vindication.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PHARISEE AND TAX COLLECTOR -->
+              <div class="entry" id="pharisee-tax" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Pharisee and the Tax Collector</h4>
+                    <p class="entry-ref">Luke 18:9–14</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Jesus addresses those who trusted in themselves that they were righteous and treated others with contempt.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>Two men pray in the temple: a Pharisee and a tax collector.</li>
+                      <li>The Pharisee boasts; the tax collector pleads for mercy.</li>
+                      <li>Jesus declares the tax collector justified.</li>
+                      <li>Movement: approach → posture → prayer → verdict.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Justification by mercy, not performance.</li>
+                      <li>True humility vs religious pride.</li>
+                      <li>God exalts the humble and opposes the self-righteous.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>The Pharisee’s problem is not obedience but self-trust.</li>
+                      <li>The tax collector’s prayer is the foundation of saving faith.</li>
+                      <li>The parable is a mirror for religious people.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Examine the posture of your heart in prayer.</li>
+                      <li>Reject spiritual comparison and self-congratulation.</li>
+                      <li>Approach God on the basis of mercy alone.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>Two men approach God.</li>
+                      <li>Two postures reveal two hearts.</li>
+                      <li>God justifies the humble.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </article>
+
+        <!-- CHAPTER 4 -->
+        <article class="chapter" data-chapter>
+          <div class="chapter-header">
+            <div class="chapter-title-block">
+              <h3 class="chapter-title">Chapter 4 — Stewardship and Accountability</h3>
+              <p class="chapter-subtitle">Faithful use of what is entrusted and the certainty of reckoning</p>
+            </div>
+            <div class="chevron">›</div>
+          </div>
+          <div class="chapter-content">
+            <div class="chapter-inner">
+              <p class="chapter-meta">
+                Parables: Talents; Ten Minas; Rich Fool; Shrewd Manager; Faithful and Wicked Servant.
+              </p>
+
+              <div class="chapter-nav">
+                <button data-jump="#talents">Talents</button>
+                <button data-jump="#minas">Ten Minas</button>
+                <button data-jump="#rich-fool">Rich Fool</button>
+                <button data-jump="#shrewd-manager">Shrewd Manager</button>
+                <button data-jump="#faithful-wicked">Faithful &amp; Wicked Servant</button>
+              </div>
+
+              <!-- TALENTS -->
+              <div class="entry" id="talents" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Parable of the Talents</h4>
+                    <p class="entry-ref">Matthew 25:14–30</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Part of Jesus’ eschatological teaching on readiness.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A master entrusts three servants with differing amounts.</li>
+                      <li>Two invest and multiply; one hides his talent.</li>
+                      <li>The master returns, evaluates, rewards, and judges.</li>
+                      <li>Movement: entrusting → opportunity → accountability → reward/judgment.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>God entrusts resources according to His wisdom.</li>
+                      <li>Faithfulness is measured by initiative, not comparison.</li>
+                      <li>Accountability at Christ’s return is certain.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>Talents = entrusted responsibilities, not natural abilities.</li>
+                      <li>The issue is not the amount but the response.</li>
+                      <li>The “wicked, lazy servant” reveals unbelief, not caution.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Use what God has given; don’t bury opportunities.</li>
+                      <li>Faithfulness requires risk, courage, and initiative.</li>
+                      <li>Live with the Master’s return in view.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The Master entrusts.</li>
+                      <li>The faithful invest.</li>
+                      <li>The unfaithful hide.</li>
+                      <li>The Master returns.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TEN MINAS -->
+              <div class="entry" id="minas" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Parable of the Ten Minas</h4>
+                    <p class="entry-ref">Luke 19:11–27</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Near Jerusalem; correcting expectations of immediate Kingdom arrival.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A nobleman goes to receive a kingdom, leaving minas with servants.</li>
+                      <li>Upon return, he evaluates their stewardship.</li>
+                      <li>Rewards vary; one servant is condemned for inaction.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Christ’s departure and future return.</li>
+                      <li>Stewardship during the “in-between” time.</li>
+                      <li>Faithfulness produces authority in the coming Kingdom.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>Minas are equal for all; contrast with talents.</li>
+                      <li>The parable includes explicit rejection by citizens—Israel’s leaders.</li>
+                      <li>Judgment includes both unfaithful servants and rebellious subjects.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Be faithful with what all believers share: gospel, time, witness.</li>
+                      <li>Expect Christ’s return; work while waiting.</li>
+                      <li>Reject passivity disguised as caution.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The King departs.</li>
+                      <li>The servants steward.</li>
+                      <li>The King returns.</li>
+                      <li>The faithful reign.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- RICH FOOL -->
+              <div class="entry" id="rich-fool" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Rich Fool</h4>
+                    <p class="entry-ref">Luke 12:13–21</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Triggered by a man demanding Jesus settle an inheritance dispute.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A rich man plans to build bigger barns for his surplus.</li>
+                      <li>He congratulates himself on future ease.</li>
+                      <li>God calls him a fool; his life ends that night.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Life does not consist in possessions.</li>
+                      <li>Wealth without reference to God is spiritual insanity.</li>
+                      <li>True riches are measured in relation to God.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>The man’s sin is not wealth but self-sufficiency.</li>
+                      <li>He plans for everything except eternity.</li>
+                      <li>“Bigger barns” symbolize misplaced security.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Guard against greed and functional atheism.</li>
+                      <li>Plan with eternity in view.</li>
+                      <li>Be rich toward God, not merely rich.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The illusion of security.</li>
+                      <li>The interruption of God.</li>
+                      <li>The reality of true riches.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SHREWD MANAGER -->
+              <div class="entry" id="shrewd-manager" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Parable of the Shrewd Manager</h4>
+                    <p class="entry-ref">Luke 16:1–13</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Spoken to disciples, overheard by Pharisees.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A manager is about to be fired.</li>
+                      <li>He reduces debts to secure future goodwill.</li>
+                      <li>The master commends his shrewdness, not his dishonesty.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Use worldly resources with eternal foresight.</li>
+                      <li>Money tests loyalty: God or mammon.</li>
+                      <li>Wisdom is measured by long-term vision.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>Jesus commends shrewdness, not corruption.</li>
+                      <li>The parable is about eternal strategy, not financial ethics.</li>
+                      <li>“Make friends” = use resources to advance Kingdom purposes.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Invest in what lasts beyond death.</li>
+                      <li>Use money as a servant, not a master.</li>
+                      <li>Evaluate financial decisions through eternity’s lens.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The crisis of accountability.</li>
+                      <li>The wisdom of foresight.</li>
+                      <li>The choice of masters.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FAITHFUL AND WICKED SERVANT -->
+              <div class="entry" id="faithful-wicked" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Faithful and Wicked Servant</h4>
+                    <p class="entry-ref">Matthew 24:45–51</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Jesus’ teaching on readiness before His return.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A master leaves a servant in charge.</li>
+                      <li>The faithful servant works diligently.</li>
+                      <li>The wicked servant abuses authority, assuming delay.</li>
+                      <li>The master returns unexpectedly.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Readiness is measured by faithful obedience, not speculation.</li>
+                      <li>Leadership is stewardship under God.</li>
+                      <li>Judgment is severe for those who misuse authority.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>The issue is not timing but posture.</li>
+                      <li>Delay tests the heart.</li>
+                      <li>The parable warns leaders especially.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Serve faithfully even when unseen.</li>
+                      <li>Reject complacency and abuse of authority.</li>
+                      <li>Live as if Christ could return at any moment.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The entrusted responsibility.</li>
+                      <li>The faithful response.</li>
+                      <li>The wicked assumption.</li>
+                      <li>The sudden return.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </article>
+
+        <!-- CHAPTER 5 -->
+        <article class="chapter" data-chapter>
+          <div class="chapter-header">
+            <div class="chapter-title-block">
+              <h3 class="chapter-title">Chapter 5 — Love, Forgiveness, and True Obedience</h3>
+              <p class="chapter-subtitle">Mercy, costly love, and obedience that goes beyond words</p>
+            </div>
+            <div class="chevron">›</div>
+          </div>
+          <div class="chapter-content">
+            <div class="chapter-inner">
+              <p class="chapter-meta">
+                Parables: Good Samaritan; Unmerciful Servant; Two Sons.
+              </p>
+
+              <div class="chapter-nav">
+                <button data-jump="#good-samaritan">Good Samaritan</button>
+                <button data-jump="#unmerciful-servant">Unmerciful Servant</button>
+                <button data-jump="#two-sons">Two Sons</button>
+              </div>
+
+              <!-- GOOD SAMARITAN -->
+              <div class="entry" id="good-samaritan" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Good Samaritan</h4>
+                    <p class="entry-ref">Luke 10:25–37</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>A lawyer tests Jesus: “What must I do to inherit eternal life?” and “Who is my neighbor?”</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A man is beaten and left half-dead.</li>
+                      <li>A priest and Levite pass by; a Samaritan stops, cares, pays, and returns.</li>
+                      <li>Movement: need → avoidance → compassion → costly action.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Neighbor love crosses boundaries of ethnicity, religion, and prejudice.</li>
+                      <li>Compassion is active, not theoretical.</li>
+                      <li>True obedience flows from mercy, not legal minimalism.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>The lawyer asks, “Who is my neighbor?” Jesus answers, “To whom will you be a neighbor?”</li>
+                      <li>The Samaritan is the shocking hero—an outsider.</li>
+                      <li>The parable exposes the failure of religious professionalism.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Love is measured by action, not sentiment.</li>
+                      <li>Compassion interrupts convenience.</li>
+                      <li>The call is not to identify neighbors but to be one.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The wounded man.</li>
+                      <li>The religious avoidance.</li>
+                      <li>The compassionate outsider.</li>
+                      <li>The call to go and do likewise.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- UNMERCIFUL SERVANT -->
+              <div class="entry" id="unmerciful-servant" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Unmerciful Servant</h4>
+                    <p class="entry-ref">Matthew 18:21–35</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Peter asks how many times he must forgive.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A servant owes an unpayable debt; the king forgives it.</li>
+                      <li>The servant refuses to forgive a small debt.</li>
+                      <li>The king judges him for his inconsistency.</li>
+                      <li>Movement: mercy received → mercy withheld → judgment.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Forgiven people must forgive.</li>
+                      <li>God’s mercy exposes the absurdity of unforgiveness.</li>
+                      <li>The Kingdom ethic is rooted in grace, not fairness.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>The massive debt symbolizes sin’s magnitude.</li>
+                      <li>The parable is not about losing salvation but revealing the heart.</li>
+                      <li>Unforgiveness contradicts the gospel.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Remember the magnitude of God’s mercy.</li>
+                      <li>Forgiveness is not optional for disciples.</li>
+                      <li>Unforgiveness reveals a heart untouched by grace.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The impossible debt forgiven.</li>
+                      <li>The small debt withheld.</li>
+                      <li>The king’s verdict.</li>
+                      <li>The call to forgive as forgiven.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TWO SONS -->
+              <div class="entry" id="two-sons" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Two Sons</h4>
+                    <p class="entry-ref">Matthew 21:28–32</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Jesus confronts religious leaders in the temple.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A father tells two sons to work in the vineyard.</li>
+                      <li>One says “no” but later obeys; the other says “yes” but does not.</li>
+                      <li>Jesus applies it to tax collectors and prostitutes entering ahead of religious leaders.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>True obedience is action, not verbal compliance.</li>
+                      <li>Repentance is honored over empty religiosity.</li>
+                      <li>God values integrity of response, not appearance.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>The parable exposes hypocrisy, not mere inconsistency.</li>
+                      <li>The “yes” son represents religious leaders; the “no” son represents repentant sinners.</li>
+                      <li>The vineyard symbolizes God’s work and mission.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Examine whether your obedience is verbal or actual.</li>
+                      <li>Repentance is always welcomed by God.</li>
+                      <li>Religious talk without obedience is rebellion in disguise.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>Two responses.</li>
+                      <li>Two realities.</li>
+                      <li>God’s verdict on true obedience.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </article>
+
+        <!-- CHAPTER 6 -->
+        <article class="chapter" data-chapter>
+          <div class="chapter-header">
+            <div class="chapter-title-block">
+              <h3 class="chapter-title">Chapter 6 — Judgment and Final Response</h3>
+              <p class="chapter-subtitle">Rejection, judgment, and the final response demanded by the Kingdom</p>
+            </div>
+            <div class="chevron">›</div>
+          </div>
+          <div class="chapter-content">
+            <div class="chapter-inner">
+              <p class="chapter-meta">
+                Parables: Wicked Tenants; Wedding Banquet; Sheep and Goats; Rich Man and Lazarus.
+              </p>
+
+              <div class="chapter-nav">
+                <button data-jump="#wicked-tenants">Wicked Tenants</button>
+                <button data-jump="#wedding-banquet">Wedding Banquet</button>
+                <button data-jump="#sheep-goats">Sheep &amp; Goats</button>
+                <button data-jump="#rich-lazarus">Rich Man &amp; Lazarus</button>
+              </div>
+
+              <!-- WICKED TENANTS -->
+              <div class="entry" id="wicked-tenants" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Wicked Tenants</h4>
+                    <p class="entry-ref">Matthew 21:33–46; Mark 12:1–12; Luke 20:9–19</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Jesus confronts Israel’s leaders in the temple during His final week.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A landowner plants a vineyard and leases it to tenants.</li>
+                      <li>He sends servants to collect fruit; they are beaten and killed.</li>
+                      <li>He sends his son; they kill him too.</li>
+                      <li>The owner destroys the tenants and gives the vineyard to others.</li>
+                      <li>Movement: privilege → rebellion → escalation → judgment → transfer.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Israel’s rejection of God’s prophets and ultimately His Son.</li>
+                      <li>God’s rightful expectation of fruit from His people.</li>
+                      <li>The Kingdom transferred to those who will bear fruit.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>The vineyard imagery echoes Isaiah 5 — deliberate indictment.</li>
+                      <li>The son represents Christ; the tenants represent Israel’s leaders.</li>
+                      <li>The “others” are not Gentiles alone but a new people of God.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Leadership is stewardship, not ownership.</li>
+                      <li>Rejecting Christ leads to judgment.</li>
+                      <li>God expects fruit from those entrusted with His truth.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The privilege of the vineyard.</li>
+                      <li>The rebellion of the tenants.</li>
+                      <li>The sending of the Son.</li>
+                      <li>The judgment and transfer.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- WEDDING BANQUET -->
+              <div class="entry" id="wedding-banquet" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Wedding Banquet</h4>
+                    <p class="entry-ref">Matthew 22:1–14</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Still in the temple, confronting resistant leaders.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A king prepares a wedding feast for his son.</li>
+                      <li>Invited guests refuse and mistreat the messengers.</li>
+                      <li>Others are gathered from the streets.</li>
+                      <li>One guest without a wedding garment is cast out.</li>
+                      <li>Movement: invitation → rejection → replacement → inspection → judgment.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>God’s gracious invitation to the Kingdom.</li>
+                      <li>Rejection by the privileged; inclusion of the unlikely.</li>
+                      <li>True participation requires proper response (the garment).</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>The garment symbolizes righteousness or true conversion, not fashion.</li>
+                      <li>The parable warns both rejecters and superficial responders.</li>
+                      <li>“Many are called, few are chosen” emphasizes response, not fatalism.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Don’t presume on privilege or proximity to truth.</li>
+                      <li>Respond to God’s invitation with genuine repentance and faith.</li>
+                      <li>God’s grace is wide, but His standards are holy.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The invitation extended.</li>
+                      <li>The rejection exposed.</li>
+                      <li>The unexpected guests welcomed.</li>
+                      <li>The garment required.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SHEEP AND GOATS -->
+              <div class="entry" id="sheep-goats" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Sheep and the Goats</h4>
+                    <p class="entry-ref">Matthew 25:31–46</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Jesus’ final teaching on judgment before the Passion narrative.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>The Son of Man sits on His throne and separates nations like sheep and goats.</li>
+                      <li>The righteous are welcomed; the wicked are condemned.</li>
+                      <li>The criterion: treatment of “the least of these.”</li>
+                      <li>Movement: appearing → separating → revealing → rewarding/judging.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Final judgment is certain and universal.</li>
+                      <li>Genuine faith expresses itself in concrete acts of mercy.</li>
+                      <li>Christ identifies with “the least of these.”</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>“The least of these” may refer to disciples or the needy generally; the principle stands.</li>
+                      <li>Works do not earn salvation; they reveal it.</li>
+                      <li>The separation is decisive and irreversible.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Examine whether your faith produces mercy.</li>
+                      <li>Serve Christ by serving the overlooked.</li>
+                      <li>Live with the final judgment in view.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The King appears.</li>
+                      <li>The nations are separated.</li>
+                      <li>The evidence is revealed.</li>
+                      <li>The verdict is given.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- RICH MAN AND LAZARUS -->
+              <div class="entry" id="rich-lazarus" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Rich Man and Lazarus</h4>
+                    <p class="entry-ref">Luke 16:19–31</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Addressed to Pharisees who loved money.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>A rich man lives in luxury; Lazarus suffers at his gate.</li>
+                      <li>After death, Lazarus is comforted; the rich man is in torment.</li>
+                      <li>The rich man pleads for relief and for his brothers to be warned.</li>
+                      <li>Abraham says Scripture is sufficient.</li>
+                      <li>Movement: earthly contrast → reversal → plea → refusal.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Eternal reversal of earthly conditions.</li>
+                      <li>The danger of wealth without compassion.</li>
+                      <li>The sufficiency of Scripture for salvation.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>Not a detailed map of the afterlife; it’s a moral warning.</li>
+                      <li>The rich man’s sin is not wealth but indifference.</li>
+                      <li>Miracles cannot replace the authority of Scripture.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Take Scripture’s warnings seriously now.</li>
+                      <li>Cultivate compassion toward the suffering.</li>
+                      <li>Wealth must not blind the heart.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The earthly contrast.</li>
+                      <li>The eternal reversal.</li>
+                      <li>The plea from torment.</li>
+                      <li>The sufficiency of Scripture.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </article>
+
+        <!-- CHAPTER 7 -->
+        <article class="chapter" data-chapter>
+          <div class="chapter-header">
+            <div class="chapter-title-block">
+              <h3 class="chapter-title">Chapter 7 — Major Allegories of Jesus</h3>
+              <p class="chapter-subtitle">Union with Christ, discipleship, witness, and new covenant reality</p>
+            </div>
+            <div class="chevron">›</div>
+          </div>
+          <div class="chapter-content">
+            <div class="chapter-inner">
+              <p class="chapter-meta">
+                Allegories: Vine and Branches; Good Shepherd; Door of the Sheepfold; Salt and Light; New Wine in Old Wineskins.
+              </p>
+
+              <div class="chapter-nav">
+                <button data-jump="#vine-branches">Vine &amp; Branches</button>
+                <button data-jump="#good-shepherd">Good Shepherd</button>
+                <button data-jump="#door-sheepfold">Door</button>
+                <button data-jump="#salt-light">Salt &amp; Light</button>
+                <button data-jump="#new-wine">New Wine &amp; Wineskins</button>
+              </div>
+
+              <!-- VINE AND BRANCHES -->
+              <div class="entry" id="vine-branches" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Allegory of the Vine and the Branches</h4>
+                    <p class="entry-ref">John 15:1–11</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Upper Room discourse on the night before the crucifixion.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>Jesus identifies Himself as the true vine; the Father is the vinedresser.</li>
+                      <li>Disciples are branches that must remain connected to bear fruit.</li>
+                      <li>Fruitless branches are removed; fruitful ones are pruned.</li>
+                      <li>Movement: union → abiding → fruit → pruning → joy.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Union with Christ as the source of all spiritual life.</li>
+                      <li>Abiding as continual dependence, not occasional devotion.</li>
+                      <li>Fruit as the evidence of genuine discipleship.</li>
+                      <li>Pruning as God’s loving refinement.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>“Fruit” refers to Christlike character and obedience, not mere activity.</li>
+                      <li>Abiding is relational, not mystical.</li>
+                      <li>The warning is real: disconnected branches wither.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Prioritize communion with Christ over productivity.</li>
+                      <li>Welcome God’s pruning as purposeful.</li>
+                      <li>Measure life by fruitfulness, not busyness.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>Christ the true vine.</li>
+                      <li>The call to abide.</li>
+                      <li>The fruit that remains.</li>
+                      <li>The joy that follows.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- GOOD SHEPHERD -->
+              <div class="entry" id="good-shepherd" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Allegory of the Good Shepherd</h4>
+                    <p class="entry-ref">John 10:1–18</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Confrontation with Pharisees after healing the man born blind.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>Jesus contrasts Himself with thieves, robbers, and hired hands.</li>
+                      <li>The shepherd knows, calls, leads, and protects the sheep.</li>
+                      <li>He lays down His life for them.</li>
+                      <li>Movement: identity → relationship → danger → sacrifice → security.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Jesus’ personal knowledge of His people.</li>
+                      <li>His sacrificial leadership and protection.</li>
+                      <li>The exclusivity of Christ as the true shepherd.</li>
+                      <li>The unity of one flock under one shepherd.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>“Thieves and robbers” refers to false leaders, not political enemies.</li>
+                      <li>The shepherd’s voice is the distinguishing mark of true disciples.</li>
+                      <li>The laying down of His life is voluntary, not forced.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Follow Christ’s voice above all others.</li>
+                      <li>Trust His leadership in danger and uncertainty.</li>
+                      <li>Reject false shepherds who exploit rather than protect.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The shepherd who knows.</li>
+                      <li>The shepherd who leads.</li>
+                      <li>The shepherd who protects.</li>
+                      <li>The shepherd who lays down His life.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DOOR OF THE SHEEPFOLD -->
+              <div class="entry" id="door-sheepfold" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Allegory of the Door of the Sheepfold</h4>
+                    <p class="entry-ref">John 10:7–10</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Same discourse as the Good Shepherd allegory.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>Jesus identifies Himself as the door for the sheep.</li>
+                      <li>Through Him, the sheep enter safety and find pasture.</li>
+                      <li>Movement: entrance → safety → provision → life.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>Christ as the exclusive way of salvation.</li>
+                      <li>True security found only in Him.</li>
+                      <li>Abundant life as His gift.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>“Abundant life” is spiritual fullness, not material prosperity.</li>
+                      <li>The door is not one option among many—it is the only entrance.</li>
+                      <li>The allegory complements, not duplicates, the shepherd image.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Enter through Christ alone.</li>
+                      <li>Rest in His protection.</li>
+                      <li>Live in the fullness He provides.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The door that saves.</li>
+                      <li>The door that protects.</li>
+                      <li>The door that gives life.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SALT AND LIGHT -->
+              <div class="entry" id="salt-light" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Allegory of Salt and Light</h4>
+                    <p class="entry-ref">Matthew 5:13–16</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Early in the Sermon on the Mount.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>Disciples are salt that preserves and flavors.</li>
+                      <li>Disciples are light that reveals and guides.</li>
+                      <li>Movement: identity → function → visibility → glory to God.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>The church’s role as a preserving influence in the world.</li>
+                      <li>Visibility of good works as testimony to God.</li>
+                      <li>Distinctiveness as essential to discipleship.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>Salt losing flavor refers to compromised distinctiveness.</li>
+                      <li>Light hidden under a basket symbolizes fear or conformity.</li>
+                      <li>Works glorify God, not the disciple.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Maintain moral and spiritual distinctiveness.</li>
+                      <li>Let your life be visibly aligned with Christ.</li>
+                      <li>Influence the world without becoming like it.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>Salt that preserves.</li>
+                      <li>Light that shines.</li>
+                      <li>Works that glorify God.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- NEW WINE IN OLD WINESKINS -->
+              <div class="entry" id="new-wine" data-entry>
+                <div class="entry-header">
+                  <div class="entry-title-block">
+                    <h4 class="entry-title">The Parable of the New Wine in Old Wineskins</h4>
+                    <p class="entry-ref">Matthew 9:14–17; Mark 2:18–22; Luke 5:33–39</p>
+                  </div>
+                  <div class="entry-chevron">›</div>
+                </div>
+                <div class="entry-body">
+                  <div class="entry-section">
+                    <h4>Setting</h4>
+                    <p>Question about fasting practices.</p>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Everyday image and story movement</h4>
+                    <ul>
+                      <li>New wine expands; old wineskins cannot stretch.</li>
+                      <li>New cloth tears old garments.</li>
+                      <li>Movement: old forms → new reality → incompatibility.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Central theological themes</h4>
+                    <ul>
+                      <li>The new covenant cannot be contained in old structures.</li>
+                      <li>Jesus brings a fundamentally new era.</li>
+                      <li>Renewal requires transformation, not patching.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Key interpretive issues</h4>
+                    <ul>
+                      <li>Not a rejection of the Old Testament, but of old systems.</li>
+                      <li>The issue is incompatibility, not disrespect.</li>
+                      <li>The new wine is the life and power of the Kingdom.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section">
+                    <h4>Application trajectories</h4>
+                    <ul>
+                      <li>Don’t force Christ into old religious frameworks.</li>
+                      <li>Embrace the new life He brings.</li>
+                      <li>Allow God to reshape structures, habits, and expectations.</li>
+                    </ul>
+                  </div>
+                  <div class="entry-section teaching-outline">
+                    <h4>Teaching outline</h4>
+                    <ol>
+                      <li>The old forms.</li>
+                      <li>The new wine.</li>
+                      <li>The necessary transformation.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </article>
+<!-- CHAPTER 8 — SCRIPTURE INDEX -->
+<article class="chapter" data-chapter>
+  <div class="chapter-header">
+    <div class="chapter-title-block">
+      <h3 class="chapter-title">Scripture Index</h3>
+      <p class="chapter-subtitle">All parables and allegories arranged by Gospel reference</p>
+    </div>
+    <div class="chevron">›</div>
+  </div>
+
+  <div class="chapter-content">
+    <div class="chapter-inner">
+
+      <p class="chapter-meta">Browse by Gospel: Matthew · Mark · Luke</p>
+
+      <!-- INTERNAL NAVIGATION -->
+      <div class="chapter-nav">
+        <button data-jump="#index-matthew">Matthew</button>
+        <button data-jump="#index-mark">Mark</button>
+        <button data-jump="#index-luke">Luke</button>
+      </div>
+
+      <!-- MATTHEW -->
+      <div class="entry" id="index-matthew" data-entry>
+        <div class="entry-header">
+          <div class="entry-title-block">
+            <h4 class="entry-title">Matthew</h4>
+            <p class="entry-ref">Scripture References</p>
+          </div>
+          <div class="entry-chevron">›</div>
+        </div>
+
+        <div class="entry-body">
+          <div class="entry-section">
+            <ul>
+              <li>Matthew 5:13–16 — Allegory of Salt and Light</li>
+              <li>Matthew 9:14–17 — Parable of the New Wine in Old Wineskins</li>
+              <li>Matthew 13:1–23 — Parable of the Sower</li>
+              <li>Matthew 13:24–30, 36–43 — Parable of the Wheat and the Weeds</li>
+              <li>Matthew 13:31–32 — Parable of the Mustard Seed</li>
+              <li>Matthew 13:33 — Parable of the Leaven</li>
+              <li>Matthew 13:44 — Parable of the Hidden Treasure</li>
+              <li>Matthew 13:45–46 — Parable of the Pearl of Great Price</li>
+              <li>Matthew 13:47–50 — The Net</li>
+              <li>Matthew 18:21–35 — The Unmerciful Servant</li>
+              <li>Matthew 21:28–32 — The Two Sons</li>
+              <li>Matthew 21:33–46 — The Wicked Tenants</li>
+              <li>Matthew 22:1–14 — The Wedding Banquet</li>
+              <li>Matthew 24:45–51 — The Faithful and Wicked Servant</li>
+              <li>Matthew 25:14–30 — Parable of the Talents</li>
+              <li>Matthew 25:31–46 — The Sheep and the Goats</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- MARK -->
+      <div class="entry" id="index-mark" data-entry>
+        <div class="entry-header">
+          <div class="entry-title-block">
+            <h4 class="entry-title">Mark</h4>
+            <p class="entry-ref">Scripture References</p>
+          </div>
+          <div class="entry-chevron">›</div>
+        </div>
+
+        <div class="entry-body">
+          <div class="entry-section">
+            <ul>
+              <li>Mark 2:18–22 — Parable of the New Wine in Old Wineskins</li>
+              <li>Mark 4:1–20 — Parable of the Sower</li>
+              <li>Mark 4:30–32 — Parable of the Mustard Seed</li>
+              <li>Mark 12:1–12 — The Wicked Tenants</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- LUKE -->
+      <div class="entry" id="index-luke" data-entry>
+        <div class="entry-header">
+          <div class="entry-title-block">
+            <h4 class="entry-title">Luke</h4>
+            <p class="entry-ref">Scripture References</p>
+          </div>
+          <div class="entry-chevron">›</div>
+        </div>
+
+        <div class="entry-body">
+          <div class="entry-section">
+            <ul>
+              <li>Luke 5:33–39 — Parable of the New Wine in Old Wineskins</li>
+              <li>Luke 7:36–50 — The Two Debtors</li>
+              <li>Luke 8:4–15 — Parable of the Sower</li>
+              <li>Luke 10:25–37 — The Good Samaritan</li>
+              <li>Luke 11:5–8 — The Friend at Midnight</li>
+              <li>Luke 12:13–21 — The Rich Fool</li>
+              <li>Luke 13:18–19 — Parable of the Mustard Seed</li>
+              <li>Luke 13:20–21 — Parable of the Leaven</li>
+              <li>Luke 15:1–7 — The Lost Sheep</li>
+              <li>Luke 15:8–10 — The Lost Coin</li>
+              <li>Luke 15:11–32 — The Prodigal Son</li>
+              <li>Luke 16:1–13 — Parable of the Shrewd Manager</li>
+              <li>Luke 16:19–31 — The Rich Man and Lazarus</li>
+              <li>Luke 18:1–8 — The Persistent Widow</li>
+              <li>Luke 18:9–14 — The Pharisee and the Tax Collector</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Dark / Light mode
+    (function () {
+      const body = document.body;
+      const toggle = document.getElementById('modeToggle');
+      const icon = document.getElementById('modeIcon');
+      const label = document.getElementById('modeLabel');
+
+      const stored = localStorage.getItem('parables-theme');
+      if (stored === 'dark') {
+        body.classList.add('dark');
+        icon.textContent = '☀️';
+        label.textContent = 'Light';
+      }
+
+      toggle.addEventListener('click', () => {
+        const isDark = body.classList.toggle('dark');
+        if (isDark) {
+          icon.textContent = '☀️';
+          label.textContent = 'Light';
+          localStorage.setItem('parables-theme', 'dark');
+        } else {
+          icon.textContent = '🌙';
+          label.textContent = 'Dark';
+          localStorage.setItem('parables-theme', 'light');
+        }
+      });
+    })();
+
+    // Collapsible chapters
+    document.querySelectorAll('[data-chapter]').forEach(chapter => {
+      const header = chapter.querySelector('.chapter-header');
+      const content = chapter.querySelector('.chapter-content');
+
+      header.addEventListener('click', () => {
+        const isOpen = chapter.classList.contains('open');
+        const inner = chapter.querySelector('.chapter-inner');
+        if (!isOpen) {
+          chapter.classList.add('open');
+          content.style.maxHeight = inner.offsetHeight + 16 + 'px';
+        } else {
+          chapter.classList.remove('open');
+          content.style.maxHeight = '0px';
+        }
+      });
+    });
+
+    // Collapsible entries
+    document.querySelectorAll('[data-entry]').forEach(entry => {
+      const header = entry.querySelector('.entry-header');
+      const body = entry.querySelector('.entry-body');
+
+      header.addEventListener('click', () => {
+        const isOpen = entry.classList.contains('open');
+        if (!isOpen) {
+          entry.classList.add('open');
+          body.style.maxHeight = body.scrollHeight + 'px';
+        } else {
+          entry.classList.remove('open');
+          body.style.maxHeight = '0px';
+        }
+      });
+    });
+
+    // Chapter internal navigation
+    document.querySelectorAll('.chapter-nav button').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const target = document.querySelector(btn.dataset.jump);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Recalculate heights on resize (for open chapters/entries)
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.chapter.open').forEach(chapter => {
+        const content = chapter.querySelector('.chapter-content');
+        const inner = chapter.querySelector('.chapter-inner');
+        content.style.maxHeight = inner.offsetHeight + 16 + 'px';
+      });
+      document.querySelectorAll('.entry.open').forEach(entry => {
+        const body = entry.querySelector('.entry-body');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      });
+    });
+  </script>
+</body>
+</html>
