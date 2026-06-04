@@ -2622,5 +2622,55 @@
       });
     });
   </script>
+ </script>
+  document.querySelectorAll("[data-chapter]").forEach(chapter => {
+  const header = chapter.querySelector(".chapter-header");
+  const content = chapter.querySelector(".chapter-content");
+
+  header.addEventListener("click", () => {
+    chapter.classList.toggle("open");
+    content.style.maxHeight = chapter.classList.contains("open")
+      ? content.scrollHeight + "px"
+      : "0px";
+  });
+});
+
+document.querySelectorAll("[data-entry]").forEach(entry => {
+  const header = entry.querySelector(".entry-header");
+  const body = entry.querySelector(".entry-body");
+
+  header.addEventListener("click", () => {
+    entry.classList.toggle("open");
+    body.style.maxHeight = entry.classList.contains("open")
+      ? body.scrollHeight + "px"
+      : "0px";
+  });
+});
+
+document.querySelectorAll("[data-jump]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const target = document.querySelector(btn.dataset.jump);
+    if (!target) return;
+
+    const entry = target.closest("[data-entry]");
+    const chapter = target.closest("[data-chapter]");
+
+    chapter.classList.add("open");
+    chapter.querySelector(".chapter-content").style.maxHeight =
+      chapter.querySelector(".chapter-content").scrollHeight + "px";
+
+    entry.classList.add("open");
+    entry.querySelector(".entry-body").style.maxHeight =
+      entry.querySelector(".entry-body").scrollHeight + "px";
+
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+const modeToggle = document.getElementById("modeToggle");
+modeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
+ </script>
 </body>
 </html>
