@@ -2564,65 +2564,70 @@
 </script>
 
 <script>
-// Collapsible chapters
-document.querySelectorAll('[data-chapter]').forEach(chapter => {
-  const header = chapter.querySelector('.chapter-header');
-  const content = chapter.querySelector('.chapter-content');
+document.addEventListener('DOMContentLoaded', () => {
 
-  header.addEventListener('click', () => {
-    const isOpen = chapter.classList.contains('open');
-    const inner = chapter.querySelector('.chapter-inner');
-    if (!isOpen) {
-      chapter.classList.add('open');
-      content.style.maxHeight = inner.offsetHeight + 16 + 'px';
-    } else {
-      chapter.classList.remove('open');
-      content.style.maxHeight = '0px';
-    }
-  });
-});
-
-// Collapsible entries
-document.querySelectorAll('[data-entry]').forEach(entry => {
-  const header = entry.querySelector('.entry-header');
-  const body = entry.querySelector('.entry-body');
-
-  header.addEventListener('click', () => {
-    const isOpen = entry.classList.contains('open');
-    if (!isOpen) {
-      entry.classList.add('open');
-      body.style.maxHeight = body.scrollHeight + 'px';
-    } else {
-      entry.classList.remove('open');
-      body.style.maxHeight = '0px';
-    }
-  });
-});
-
-// Chapter internal navigation
-document.querySelectorAll('.chapter-nav button').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const target = document.querySelector(btn.dataset.jump);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
-
-// Recalculate heights on resize
-window.addEventListener('resize', () => {
-  document.querySelectorAll('.chapter.open').forEach(chapter => {
+  // Collapsible chapters
+  document.querySelectorAll('[data-chapter]').forEach(chapter => {
+    const header = chapter.querySelector('.chapter-header');
     const content = chapter.querySelector('.chapter-content');
-    const inner = chapter.querySelector('.chapter-inner');
-    content.style.maxHeight = inner.offsetHeight + 16 + 'px';
+
+    header.addEventListener('click', () => {
+      const isOpen = chapter.classList.contains('open');
+      const inner = chapter.querySelector('.chapter-inner');
+      if (!isOpen) {
+        chapter.classList.add('open');
+        content.style.maxHeight = inner.offsetHeight + 16 + 'px';
+      } else {
+        chapter.classList.remove('open');
+        content.style.maxHeight = '0px';
+      }
+    });
   });
-  document.querySelectorAll('.entry.open').forEach(entry => {
+
+  // Collapsible entries
+  document.querySelectorAll('[data-entry]').forEach(entry => {
+    const header = entry.querySelector('.entry-header');
     const body = entry.querySelector('.entry-body');
-    body.style.maxHeight = body.scrollHeight + 'px';
+
+    header.addEventListener('click', () => {
+      const isOpen = entry.classList.contains('open');
+      if (!isOpen) {
+        entry.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      } else {
+        entry.classList.remove('open');
+        body.style.maxHeight = '0px';
+      }
+    });
   });
+
+  // Chapter internal navigation
+  document.querySelectorAll('.chapter-nav button').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const target = document.querySelector(btn.dataset.jump);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Recalculate heights on resize
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.chapter.open').forEach(chapter => {
+      const content = chapter.querySelector('.chapter-content');
+      const inner = chapter.querySelector('.chapter-inner');
+      content.style.maxHeight = inner.offsetHeight + 16 + 'px';
+    });
+    document.querySelectorAll('.entry.open').forEach(entry => {
+      const body = entry.querySelector('.entry-body');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    });
+  });
+
 });
 </script>
+
 
 </body>
 </html>
