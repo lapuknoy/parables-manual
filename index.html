@@ -2622,8 +2622,8 @@
       });
     });
   </script>
- </script>
-  document.querySelectorAll("[data-chapter]").forEach(chapter => {
+<script>
+document.querySelectorAll("[data-chapter]").forEach(chapter => {
   const header = chapter.querySelector(".chapter-header");
   const content = chapter.querySelector(".chapter-content");
 
@@ -2671,6 +2671,7 @@ const modeToggle = document.getElementById("modeToggle");
 modeToggle.addEventListener("click", () => {
   document.body.classList.toggle("dark");
 });
- </script>
+</script>
+
 </body>
 </html>
