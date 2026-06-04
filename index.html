@@ -2533,141 +2533,94 @@
       </section>
     </main>
   </div>
+<script>
+// Dark / Light mode
+(function () {
+  const body = document.body;
+  const toggle = document.getElementById('modeToggle');
+  const icon = document.getElementById('modeIcon');
+  const label = document.getElementById('modeLabel');
 
-  <script>
-    // Dark / Light mode
-    (function () {
-      const body = document.body;
-      const toggle = document.getElementById('modeToggle');
-      const icon = document.getElementById('modeIcon');
-      const label = document.getElementById('modeLabel');
+  const stored = localStorage.getItem('parables-theme');
+  if (stored === 'dark') {
+    body.classList.add('dark');
+    icon.textContent = '☀️';
+    label.textContent = 'Light';
+  }
 
-      const stored = localStorage.getItem('parables-theme');
-      if (stored === 'dark') {
-        body.classList.add('dark');
-        icon.textContent = '☀️';
-        label.textContent = 'Light';
-      }
+  toggle.addEventListener('click', () => {
+    const isDark = body.classList.toggle('dark');
+    if (isDark) {
+      icon.textContent = '☀️';
+      label.textContent = 'Light';
+      localStorage.setItem('parables-theme', 'dark');
+    } else {
+      icon.textContent = '🌙';
+      label.textContent = 'Dark';
+      localStorage.setItem('parables-theme', 'light');
+    }
+  });
+})();
+</script>
 
-      toggle.addEventListener('click', () => {
-        const isDark = body.classList.toggle('dark');
-        if (isDark) {
-          icon.textContent = '☀️';
-          label.textContent = 'Light';
-          localStorage.setItem('parables-theme', 'dark');
-        } else {
-          icon.textContent = '🌙';
-          label.textContent = 'Dark';
-          localStorage.setItem('parables-theme', 'light');
-        }
-      });
-    })();
+<script>
+// Collapsible chapters
+document.querySelectorAll('[data-chapter]').forEach(chapter => {
+  const header = chapter.querySelector('.chapter-header');
+  const content = chapter.querySelector('.chapter-content');
 
-    // Collapsible chapters
-    document.querySelectorAll('[data-chapter]').forEach(chapter => {
-      const header = chapter.querySelector('.chapter-header');
-      const content = chapter.querySelector('.chapter-content');
-
-      header.addEventListener('click', () => {
-        const isOpen = chapter.classList.contains('open');
-        const inner = chapter.querySelector('.chapter-inner');
-        if (!isOpen) {
-          chapter.classList.add('open');
-          content.style.maxHeight = inner.offsetHeight + 16 + 'px';
-        } else {
-          chapter.classList.remove('open');
-          content.style.maxHeight = '0px';
-        }
-      });
-    });
-
-    // Collapsible entries
-    document.querySelectorAll('[data-entry]').forEach(entry => {
-      const header = entry.querySelector('.entry-header');
-      const body = entry.querySelector('.entry-body');
-
-      header.addEventListener('click', () => {
-        const isOpen = entry.classList.contains('open');
-        if (!isOpen) {
-          entry.classList.add('open');
-          body.style.maxHeight = body.scrollHeight + 'px';
-        } else {
-          entry.classList.remove('open');
-          body.style.maxHeight = '0px';
-        }
-      });
-    });
-
-    // Chapter internal navigation
-    document.querySelectorAll('.chapter-nav button').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const target = document.querySelector(btn.dataset.jump);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    // Recalculate heights on resize (for open chapters/entries)
-    window.addEventListener('resize', () => {
-      document.querySelectorAll('.chapter.open').forEach(chapter => {
-        const content = chapter.querySelector('.chapter-content');
-        const inner = chapter.querySelector('.chapter-inner');
-        content.style.maxHeight = inner.offsetHeight + 16 + 'px';
-      });
-      document.querySelectorAll('.entry.open').forEach(entry => {
-        const body = entry.querySelector('.entry-body');
-        body.style.maxHeight = body.scrollHeight + 'px';
-      });
-    });
-document.querySelectorAll("[data-chapter]").forEach(chapter => {
-  const header = chapter.querySelector(".chapter-header");
-  const content = chapter.querySelector(".chapter-content");
-
-  header.addEventListener("click", () => {
-    chapter.classList.toggle("open");
-    content.style.maxHeight = chapter.classList.contains("open")
-      ? content.scrollHeight + "px"
-      : "0px";
+  header.addEventListener('click', () => {
+    const isOpen = chapter.classList.contains('open');
+    const inner = chapter.querySelector('.chapter-inner');
+    if (!isOpen) {
+      chapter.classList.add('open');
+      content.style.maxHeight = inner.offsetHeight + 16 + 'px';
+    } else {
+      chapter.classList.remove('open');
+      content.style.maxHeight = '0px';
+    }
   });
 });
 
-document.querySelectorAll("[data-entry]").forEach(entry => {
-  const header = entry.querySelector(".entry-header");
-  const body = entry.querySelector(".entry-body");
+// Collapsible entries
+document.querySelectorAll('[data-entry]').forEach(entry => {
+  const header = entry.querySelector('.entry-header');
+  const body = entry.querySelector('.entry-body');
 
-  header.addEventListener("click", () => {
-    entry.classList.toggle("open");
-    body.style.maxHeight = entry.classList.contains("open")
-      ? body.scrollHeight + "px"
-      : "0px";
+  header.addEventListener('click', () => {
+    const isOpen = entry.classList.contains('open');
+    if (!isOpen) {
+      entry.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    } else {
+      entry.classList.remove('open');
+      body.style.maxHeight = '0px';
+    }
   });
 });
 
-document.querySelectorAll("[data-jump]").forEach(btn => {
-  btn.addEventListener("click", () => {
+// Chapter internal navigation
+document.querySelectorAll('.chapter-nav button').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
     const target = document.querySelector(btn.dataset.jump);
-    if (!target) return;
-
-    const entry = target.closest("[data-entry]");
-    const chapter = target.closest("[data-chapter]");
-
-    chapter.classList.add("open");
-    chapter.querySelector(".chapter-content").style.maxHeight =
-      chapter.querySelector(".chapter-content").scrollHeight + "px";
-
-    entry.classList.add("open");
-    entry.querySelector(".entry-body").style.maxHeight =
-      entry.querySelector(".entry-body").scrollHeight + "px";
-
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   });
 });
 
-const modeToggle = document.getElementById("modeToggle");
-modeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
+// Recalculate heights on resize
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.chapter.open').forEach(chapter => {
+    const content = chapter.querySelector('.chapter-content');
+    const inner = chapter.querySelector('.chapter-inner');
+    content.style.maxHeight = inner.offsetHeight + 16 + 'px';
+  });
+  document.querySelectorAll('.entry.open').forEach(entry => {
+    const body = entry.querySelector('.entry-body');
+    body.style.maxHeight = body.scrollHeight + 'px';
+  });
 });
 </script>
 
